@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "satispaython"
-version = "0.4.0"
+version = "1.0.0"
 description = "A simple library to manage Satispay payments following the Web-button flow."
 license = "MIT"
 authors = ["Daniele Pira <daniele.pira@otto.to.it>"]
