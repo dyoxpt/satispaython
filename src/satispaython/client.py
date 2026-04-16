@@ -1,3 +1,4 @@
+import json
 from typing import Optional
 
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateKey
@@ -34,7 +35,7 @@ class SatispayClient(Client):
             body_params.update({'flow': 'MATCH_CODE', 'amount_unit': amount_unit, 'currency': currency})
         except AttributeError:
             body_params = {'flow': 'MATCH_CODE', 'amount_unit': amount_unit, 'currency': currency}
-        return self.post(target, json=body_params, headers=headers)
+        return self.post(target, content=json.dumps(body_params).encode(), headers=headers)
 
     def get_payment_details(self, payment_id: str, headers: Optional[Headers] = None) -> Response:
         target = URL(f'/g_business/v1/payments/{payment_id}')
@@ -69,7 +70,7 @@ class AsyncSatispayClient(AsyncClient):
             body_params.update({'flow': 'MATCH_CODE', 'amount_unit': amount_unit, 'currency': currency})
         except AttributeError:
             body_params = {'flow': 'MATCH_CODE', 'amount_unit': amount_unit, 'currency': currency}
-        return await self.post(target, json=body_params, headers=headers)
+        return await self.post(target, content=json.dumps(body_params).encode(), headers=headers)
 
     async def get_payment_details(self, payment_id: str, headers: Optional[Headers] = None) -> Response:
         target = URL(f'/g_business/v1/payments/{payment_id}')

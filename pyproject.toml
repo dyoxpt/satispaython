@@ -15,9 +15,9 @@ classifiers = ["Topic :: Software Development :: Libraries :: Python Modules"]
 packages = [{include = "satispaython", from="src"}]
 
 [tool.poetry.dependencies]
-python = "^3.6"
-cryptography = "^3.4"
-httpx = "^0.18"
+python = "^3.8"
+cryptography = "^46.0.7"
+httpx = "^0.25"
 
 [tool.poetry.dev-dependencies]
 pytest-cov = "^2.10"
@@ -42,13 +42,13 @@ source = ["src/satispaython", ".tox/py*/lib/python*/site-packages/satispaython"]
 legacy_tox_ini = """
 [tox]
 isolated_build = True
-envlist = clean,py36,py37,py38,py39,report
+envlist = clean,py38,py39,report
 
 [testenv]
-setenv = py{36,37,38,39}: COVERAGE_FILE=.coverage.{envname}
+setenv = py{38,39}: COVERAGE_FILE=.coverage.{envname}
 depends =
-    {py36,py37,py38,py39}: clean
-    report: py36,py37,py38,py39
+    {py38,py39}: clean
+    report: py38,py39
 deps =
     pytest-cov
     pytest-freezegun
